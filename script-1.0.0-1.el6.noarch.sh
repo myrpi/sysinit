@@ -3,9 +3,9 @@
 ################ Script Info ################		
 
 ## Program: Auto Script V1.0
-## Author:Clumart.G
-## Date: 2013-12-12
-## Update:None
+## Author:  Clumart.G(翅儿学飞)
+## Date:    2013-12-12
+## Update:  2013122101 None
 
 
 ################ Env Define ################
@@ -72,6 +72,17 @@ function _header() {
 	printf " o----------------------------------------------------------------o\n"	
 }
 
+function _error_exit() {
+    cd
+    rm -rf ${HomeDir}
+    clear
+    printf " o----------------------------------------------------------------o\n"
+    printf " | :: Error                                   v1.0.0 (2013-10-28) |\n"
+    printf " o----------------------------------------------------------------o\n"        
+    printf " Error Message:$1 \n"
+    exit 1
+}
+
 ##Program Function
 
 ################ Main ################
@@ -87,9 +98,10 @@ if [ ! -d $HomeDir ]; then
 	mkdir -p $HomeDir
 fi
 
-cd $HomeDir || exit 1
+cd $HomeDir || _error_exit "Enter ${HomeDir} Faild."
 
 
-_end_msg
 ############  Clean Cache  ############
+cd
 rm -rf ${HomeDir}
+_end_msg
